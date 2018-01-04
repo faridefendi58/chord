@@ -1,7 +1,7 @@
 <?php
 namespace Extensions;
 
-class BlogService
+class ChordService
 {
     protected $basePath;
     protected $themeName;
@@ -110,8 +110,8 @@ class BlogService
     public function getMenu()
     {
         return [
-            [ 'label' => 'Daftar Postingan', 'url' => 'blog/posts/view', 'icon' => 'fa fa-search' ],
-            [ 'label' => 'Tambah Postingan', 'url' => 'blog/posts/create', 'icon' => 'fa fa-plus' ],
+            [ 'label' => 'Daftar Postingan', 'url' => 'chord/posts/view', 'icon' => 'fa fa-search' ],
+            [ 'label' => 'Tambah Postingan', 'url' => 'chord/posts/create', 'icon' => 'fa fa-plus' ],
         ];
     }
 }

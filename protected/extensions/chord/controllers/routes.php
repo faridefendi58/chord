@@ -1,14 +1,14 @@
 <?php
 // frontend url
-$app->get('/blog', function ($request, $response, $args) {
+$app->get('/chord', function ($request, $response, $args) {
     $model = new \ExtensionsModel\PostModel();
 
-    return $this->view->render($response, 'blog.phtml', [
+    return $this->view->render($response, 'chord.phtml', [
         'name' => $args['name'],
         'mpost' => $model
     ]);
 });
-$app->get('/blog/[{name}]', function ($request, $response, $args) {
+$app->get('/chord/[{name}]', function ($request, $response, $args) {
 
     if (empty($args['name']))
         $args['name'] = 'index';
@@ -22,7 +22,7 @@ $app->get('/blog/[{name}]', function ($request, $response, $args) {
             $category = $model->getCategory(['slug' => $args['name']]);
             if (is_array($category) && !empty($category['id'])) {
 
-                return $this->view->render($response, 'blog.phtml', [
+                return $this->view->render($response, 'chord.phtml', [
                     'category' => $category,
                     'mpost' => $model
                 ]);
@@ -60,7 +60,7 @@ foreach (glob(__DIR__.'/../components/*.php') as $component) {
     }
 }
 
-$app->group('/blog', function () use ($user) {
+$app->group('/chord', function () use ($user) {
     $this->group('/posts', function() use ($user) {
         new Extensions\Controllers\PostsController($this, $user);
     });
