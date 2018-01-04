@@ -12,7 +12,7 @@ Tambah Postingan Baru - {{ App.name }}
 				<p class="text-muted">Formulir penambahan postingan baru</p>
 			</div>
 			<div class="col-sm-2 text-right">
-				<a class="btn btn-default" href="{{ 'blog/posts/view' | link }}">Daftar Postingan</a>
+				<a class="btn btn-default" href="{{ 'chord/posts/view' | link }}">Daftar Postingan</a>
 			</div>
 		</div>
 	</div>
@@ -125,13 +125,13 @@ $(function(){
 		plugins : 'code image imagetools paste',
 		menubar : false,
 		toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | pastetext image code',
-		//images_upload_url: '{{ "blog/posts/direct-upload" | link }}',
+		//images_upload_url: '{{ "chord/posts/direct-upload" | link }}',
 		images_upload_handler: function (blobInfo, success, failure) {
 			var xhr, formData;
 
 			xhr = new XMLHttpRequest();
 			xhr.withCredentials = false;
-			xhr.open('POST', '{{ "blog/posts/direct-upload" | link }}');
+			xhr.open('POST', '{{ "chord/posts/direct-upload" | link }}');
 
 			xhr.onload = function() {
 				var json;
@@ -160,7 +160,7 @@ $(function(){
 	var success_message = "{{ message }}";
 	if (success_message && success_message.length > 0) {
 		setTimeout(function () {
-			window.location.href = "{{ 'blog/posts/update' | link }}/{{ post_id }}";
+			window.location.href = "{{ 'chord/posts/update' | link }}/{{ post_id }}";
 		}, 2000);
 	}
 });
@@ -169,7 +169,7 @@ function getSlug(data){
 	$.ajax({
 		'beforeSend': function() {  },
 		'complete': function() {  },
-		'url': "{{ 'blog/posts/get-slug' | link }}",
+		'url': "{{ 'chord/posts/get-slug' | link }}",
 		'type':'post',
 		'data':{'title':$(data).val()},
 		'success': function(data) {

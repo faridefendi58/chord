@@ -1,7 +1,7 @@
 {
-    "id" : "blog",
-    "name" : "Blog",
-    "description" : "Blog post module for slightsite 1.0",
+    "id" : "chord",
+    "name" : "Chord",
+    "description" : "Chord post module for slightsite 1.0",
     "icon" : "icon.png",
     "author" : "farid efendi",
     "author_url" : "http://jagungbakar.web.id/",
