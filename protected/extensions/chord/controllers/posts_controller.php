@@ -78,6 +78,9 @@ class PostsController extends BaseController
             if (!empty($_POST['Post']['tags'])) {
                 $model->tags = $_POST['Post']['tags'];
             }
+            if (!empty($_POST['Post']['chords'])) {
+                $model->chords = $_POST['Post']['chords'];
+            }
             $model->created_at = date('Y-m-d H:i:s');
             $model->updated_at = date('Y-m-d H:i:s');
             $create = \ExtensionsModel\PostModel::model()->save(@$model);
@@ -162,6 +165,9 @@ class PostsController extends BaseController
             $model->post_type = $_POST['Post']['post_type'];
             if (!empty($_POST['Post']['tags'])) {
                 $model->tags = $_POST['Post']['tags'];
+            }
+            if (!empty($_POST['Post']['chords'])) {
+                $model->chords = $_POST['Post']['chords'];
             }
             $model->updated_at = date('Y-m-d H:i:s');
             $update = \ExtensionsModel\PostModel::model()->update($model);

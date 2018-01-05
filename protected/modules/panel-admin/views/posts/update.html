@@ -13,7 +13,7 @@ Perbarui Postingan - {{ App.name }}
 				<p class="text-muted">Ubah postingan</p>
 			</div>
 			<div class="col-sm-4 text-right">
-				<a class="btn btn-default" href="{{ 'chord/posts/view' | link }}">Daftar Postingan</a>
+				<a class="btn btn-default" href="{{ 'chords/posts/view' | link }}">Daftar Postingan</a>
 				<a class="btn btn-default" href="{{ 'chord' | link }}/{{ post.content[1].slug }}" target="_newtab">Lihat Postingan</a>
 			</div>
 		</div>
@@ -81,6 +81,10 @@ Perbarui Postingan - {{ App.name }}
 									<input type="text" name="Post[tags]" class="form-control" placeholder="Please separate with ','. Ex : domain, whois" value="{{ post.tags_string }}">
 								</div>
 								<div class="form-group col-sm-6">
+									<label>Chords</label>
+									<input type="text" name="Post[chords]" class="form-control" placeholder="Please separate with ','. Ex : C, Dm" value="{{ post.chords_string }}">
+								</div>
+								<div class="form-group col-sm-6">
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="Post[allow_comment]" {% if post.allow_comment %}checked="checked"{% endif %}>
@@ -112,7 +116,7 @@ Perbarui Postingan - {{ App.name }}
 						<div class="panel-heading">Add More Images</div>
 						<div class="panel-body">
 							<div class="alert" id="upload-alert" style="display: none;"></div>
-							<form class="form-bordered" id="image-form" action="{{ 'chord/posts/upload-images' | link }}">
+							<form class="form-bordered" id="image-form" action="{{ 'chords/posts/upload-images' | link }}">
 								<div class="form-group">
 									<label class="control-label">Images</label>
 									<div class="fileupload fileupload-new" data-provides="fileupload">
@@ -234,7 +238,7 @@ Perbarui Postingan - {{ App.name }}
 
 				xhr = new XMLHttpRequest();
 				xhr.withCredentials = false;
-				xhr.open('POST', '{{ "chord/posts/direct-upload" | link }}');
+				xhr.open('POST', '{{ "chords/posts/direct-upload" | link }}');
 
 				xhr.onload = function() {
 					var json;
@@ -264,7 +268,7 @@ Perbarui Postingan - {{ App.name }}
 		var success_message = "{{ message }}";
 		if (success_message && success_message.length > 0) {
 			setTimeout(function () {
-				window.location.href = "{{ 'chord/posts/update' | link }}/{{ post.id }}";
+				window.location.href = "{{ 'chords/posts/update' | link }}/{{ post.id }}";
 			}, 3000);
 		}
 		$("#submit-image-form").click(function(){
@@ -306,7 +310,7 @@ Perbarui Postingan - {{ App.name }}
 		$.ajax({
 			'beforeSend': function() {  },
 			'complete': function() {  },
-			'url': "{{ 'chord/posts/get-slug' | link }}",
+			'url': "{{ 'chords/posts/get-slug' | link }}",
 			'type':'post',
 			'data':{'title':$(data).val()},
 			'success': function(data) {
@@ -320,7 +324,7 @@ Perbarui Postingan - {{ App.name }}
 			$.ajax({
 				'beforeSend': function() {  },
 				'complete': function() {  },
-				'url': "{{ 'chord/posts/delete-image' | link }}/"+$this.attr('attr-id'),
+				'url': "{{ 'chords/posts/delete-image' | link }}/"+$this.attr('attr-id'),
 				'type':'post',
 				'data':{'id':$this.attr('attr-id')},
 				'success': function(data) {

@@ -101,7 +101,7 @@ class PostModel extends \Model\BaseModel
     
     public function getPostDetail($id)
     {
-        $sql = "SELECT c.post_id, t.status, t.allow_comment, t.tags, t.created_at, t.updated_at, 
+        $sql = "SELECT c.post_id, t.status, t.allow_comment, t.tags, t.chords, t.song_id, t.created_at, t.updated_at, 
           c.title, c.content, c.slug, l.id AS language_id, 
           c.meta_keywords, c.meta_description, l.language_name, ad.username AS author_name 
         FROM {tablePrefix}ext_post t 
@@ -120,6 +120,8 @@ class PostModel extends \Model\BaseModel
             'allow_comment' => $rows[0]['allow_comment'],
             'tags' => (!empty($rows[0]['tags']))? self::string2array($rows[0]['tags']) : array(),
             'tags_string' => $rows[0]['tags'],
+            'chords' => (!empty($rows[0]['chords']))? self::string2array($rows[0]['chords']) : array(),
+            'chords_string' => $rows[0]['chords'],
             'author' => $rows[0]['author_name'],
             'created_at' => $rows[0]['created_at'],
             'updated_at' => $rows[0]['updated_at'],
@@ -146,13 +148,14 @@ class PostModel extends \Model\BaseModel
             array_push($category, $row2['category_id']);
         }
         $items['category'] = $category;
+        $items['song'] = self::getSongDetail(['id'=>$id]);
 
         return $items;
     }
 
     public function getPost($slug)
     {
-        $sql = "SELECT c.post_id, t.status, t.allow_comment, t.tags, t.created_at, t.updated_at, 
+        $sql = "SELECT c.post_id, t.status, t.allow_comment, t.tags, t.chords, t.song_id, t.created_at, t.updated_at, 
           c.title, c.content, c.slug, l.id AS language_id, 
           c.meta_keywords, c.meta_description, l.language_name, ad.username AS author_name 
         FROM {tablePrefix}ext_post t 
@@ -171,6 +174,8 @@ class PostModel extends \Model\BaseModel
             'allow_comment' => $row['allow_comment'],
             'tags' => (!empty($row['tags']))? self::string2array($row['tags']) : array(),
             'tags_string' => $row['tags'],
+            'chords' => (!empty($row['chords']))? self::string2array($row['chords']) : array(),
+            'chords_string' => $row['chords'],
             'author' => $row['author_name'],
             'created_at' => $row['created_at'],
             'updated_at' => $row['updated_at'],
@@ -203,6 +208,8 @@ class PostModel extends \Model\BaseModel
         $sql3 = str_replace(['{tablePrefix}'], [$this->_tbl_prefix], $sql3);
 
         $items['main_category'] = \Model\R::getRow( $sql3, ['post_id'=>$row['post_id']] );
+        if ($row['song_id'] > 0)
+            $items['song'] = self::getSongDetail( ['id'=>$row['song_id']] );
 
         return $items;
     }
@@ -272,6 +279,23 @@ class PostModel extends \Model\BaseModel
             $sql .= " AND t.slug =:slug";
             $params['slug'] = $data['slug'];
         }
+
+        if (isset($data['id'])) {
+            $sql .= " AND t.id =:id";
+            $params['id'] = $data['id'];
+        }
+
+        $sql = str_replace(['{tablePrefix}'], [$this->_tbl_prefix], $sql);
+
+        $row = \Model\R::getRow( $sql, $params );
+        return $row;
+    }
+
+    public function getSongDetail($data)
+    {
+        $sql = "SELECT t.*      
+        FROM {tablePrefix}ext_post_songs t 
+        WHERE 1";
 
         if (isset($data['id'])) {
             $sql .= " AND t.id =:id";

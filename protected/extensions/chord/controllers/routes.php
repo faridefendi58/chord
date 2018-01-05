@@ -8,7 +8,7 @@ $app->get('/chord', function ($request, $response, $args) {
         'mpost' => $model
     ]);
 });
-$app->get('/chord/[{name}]', function ($request, $response, $args) {
+$app->get('/chord/{artist}/{name}', function ($request, $response, $args) {
 
     if (empty($args['name']))
         $args['name'] = 'index';
@@ -60,7 +60,7 @@ foreach (glob(__DIR__.'/../components/*.php') as $component) {
     }
 }
 
-$app->group('/chord', function () use ($user) {
+$app->group('/chords', function () use ($user) {
     $this->group('/posts', function() use ($user) {
         new Extensions\Controllers\PostsController($this, $user);
     });
