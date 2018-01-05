@@ -3061,4 +3061,11 @@ a.bg-light:focus,a.bg-light:hover{color:#545a5f}
 .mb-10 {margin-bottom: 100px;}
 .no-background {background:none !important;}
 .chord-c {background: url('../img/guitar-chord-chart.png') 890px -467px;width: 80px;height: 115px;}
-.chord-d {background: url('../img/guitar-chord-chart.png') 890px -467px;width: 80px;height: 115px;}
+.chord-d {background: url('../img/guitar-chord-chart.png') 890px -700px;width: 80px;height: 115px;}
+.chord-dm {background: url('../img/guitar-chord-chart.png') 811px -700px;width: 80px;height: 115px;}
+.chord-e {background: url('../img/guitar-chord-chart.png') 890px -931px;width: 80px;height: 115px;}
+.chord-em {background: url('../img/guitar-chord-chart.png') 811px -931px;width: 80px;height: 115px;}
+.chord-f {background: url('../img/guitar-chord-chart.png') 890px -1047px;width: 80px;height: 115px;}
+.chord-g {background: url('../img/guitar-chord-chart.png') 890px -1279px;width: 80px;height: 115px;}
+.chord-a {background: url('../img/guitar-chord-chart.png') 890px -1519px;width: 80px;height: 115px;}
+.chord-am {background: url('../img/guitar-chord-chart.png') 811px -1519px;width: 80px;height: 115px;}
