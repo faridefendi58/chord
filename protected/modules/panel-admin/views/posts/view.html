@@ -13,7 +13,7 @@ Daftar Postingan chord - {{ App.name }}
                 <p class="text-muted">Daftar postingan untuk chord</p>
             </div>
             <div class="col-sm-2 text-right">
-                <a class="btn btn-default" href="{{ 'chord/posts/create' | link }}">Buat Postingan Baru</a>
+                <a class="btn btn-default" href="{{ 'chords/posts/create' | link }}">Buat Postingan Baru</a>
             </div>
         </div>
     </div>
@@ -40,16 +40,16 @@ Daftar Postingan chord - {{ App.name }}
                                     <tr>
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ post.title }}</td>
-                                        <td><a href="{{ 'chord' | link }}/{{ post.slug }}" target="_newtab" data-toggle="tooltip" title="Klik untuk melihat hasil postingan">{{ 'chord' | link }}/{{ post.slug }}</a></td>
+                                        <td><a href="{{ 'chord' | link }}/{{ post.song_slug }}/{{ post.slug }}" target="_newtab" data-toggle="tooltip" title="Klik untuk melihat hasil postingan">{{ 'chord' | link }}/{{ post.song_slug }}/{{ post.slug }}</a></td>
                                         <td><center>{{ post.status }}</center></td>
                                         <td>
-                                            <a href="{{ 'chord/posts/update' | link }}/{{ post.post_id }}" data-toggle="tooltip" title="Klik untuk mengubah data postingan!">
+                                            <a href="{{ 'chords/posts/update' | link }}/{{ post.post_id }}" data-toggle="tooltip" title="Klik untuk mengubah data postingan!">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <a href="{{ 'chord/posts/comment' | link }}/{{ post.post_id }}" data-toggle="tooltip" title="Tampilkan daftar komentar untuk postingan ini">
+                                            <a href="{{ 'chords/posts/comment' | link }}/{{ post.post_id }}" data-toggle="tooltip" title="Tampilkan daftar komentar untuk postingan ini">
                                                 <i class="fa fa-comments-o"></i>
                                             </a>
-                                            <a href="{{ 'chord/posts/delete' | link }}/{{ post.post_id }}" onclick="return hapus(this);" data-toggle="tooltip" title="Tombol ini akan menghapus postingan. Pastikan sekali lagi sebelum data ``{{ post.title }}`` benar - benar hilang.">
+                                            <a href="{{ 'chords/posts/delete' | link }}/{{ post.post_id }}" onclick="return hapus(this);" data-toggle="tooltip" title="Tombol ini akan menghapus postingan. Pastikan sekali lagi sebelum data ``{{ post.title }}`` benar - benar hilang.">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
                                         </td>

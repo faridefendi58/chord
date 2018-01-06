@@ -1,14 +1,24 @@
 <?php
 // frontend url
-$app->get('/chord', function ($request, $response, $args) {
+$app->get('/artist/{name}', function ($request, $response, $args) {
     $model = new \ExtensionsModel\PostModel();
 
-    return $this->view->render($response, 'chord.phtml', [
+    return $this->view->render($response, 'artist.phtml', [
         'name' => $args['name'],
         'mpost' => $model
     ]);
 });
-$app->get('/chord/[{name}]', function ($request, $response, $args) {
+$app->get('/search', function ($request, $response, $args) {
+    $model = new \ExtensionsModel\PostModel();
+    $data = $model->getSearchResult( $_GET );
+
+    return $this->view->render($response, 'search.phtml', [
+        'mpost' => $model,
+        'q' => $_GET['q'],
+        'data' => $data
+    ]);
+});
+$app->get('/chord/{artist}/{name}', function ($request, $response, $args) {
 
     if (empty($args['name']))
         $args['name'] = 'index';
@@ -60,7 +70,7 @@ foreach (glob(__DIR__.'/../components/*.php') as $component) {
     }
 }
 
-$app->group('/chord', function () use ($user) {
+$app->group('/chords', function () use ($user) {
     $this->group('/posts', function() use ($user) {
         new Extensions\Controllers\PostsController($this, $user);
     });

@@ -110,8 +110,8 @@ class ChordService
     public function getMenu()
     {
         return [
-            [ 'label' => 'Daftar Postingan', 'url' => 'chord/posts/view', 'icon' => 'fa fa-search' ],
-            [ 'label' => 'Tambah Postingan', 'url' => 'chord/posts/create', 'icon' => 'fa fa-plus' ],
+            [ 'label' => 'Daftar Postingan', 'url' => 'chords/posts/view', 'icon' => 'fa fa-search' ],
+            [ 'label' => 'Tambah Postingan', 'url' => 'chords/posts/create', 'icon' => 'fa fa-plus' ],
         ];
     }
 }

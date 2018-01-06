@@ -2690,6 +2690,7 @@ a.bg-light:focus,a.bg-light:hover{color:#545a5f}
 .text-black{color:#000}
 .text-white{color:#fff}
 .text-muted{color:#939aa0}
+.text-bold{font-weight:bold;}
 .pos-rlt{position:relative}
 .pos-stc{position:static}
 .pos-abt{position:absolute}
@@ -3012,27 +3013,11 @@ a.bg-light:focus,a.bg-light:hover{color:#545a5f}
     50%{height:90%}
     100%{height:65%}
 }
-.logo-search input {
-    background: #dedede;
-    border: none;
-    color: #757575;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-    border-radius: 20px;
-}
-.logo-search button {
-    font-size: 13px;
-    background: #dedede;
-    border: none;
-    color: #757575;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-    border-radius: 20px;
-}
+.logo-search input {background: #dedede;border: none;color: #757575;-webkit-border-radius: 20px;-moz-border-radius: 20px;-ms-border-radius: 20px;-o-border-radius: 20px;border-radius: 20px;}
+.logo-search button {font-size: 13px;background: #dedede;border: none;color: #757575;-webkit-border-radius: 20px;-moz-border-radius: 20px;-ms-border-radius: 20px;-o-border-radius: 20px;border-radius: 20px;}
+.nav-xs .main-logo {display:none;}
+.navbar-brand .secondary-logo {display:none;}
+.nav-xs .secondary-logo {display:block;}
 .mt-0 {margin-top: 0px;}
 .mt-1 {margin-top: 10px;}
 .mt-2 {margin-top: 20px;}
@@ -3060,7 +3045,21 @@ a.bg-light:focus,a.bg-light:hover{color:#545a5f}
 .mb-10 {margin-bottom: 100px;}
 .mb-10 {margin-bottom: 100px;}
 .no-background {background:none !important;}
+.font-size-18{font-size:18px}
+.font-size-20{font-size:20px}
+.font-size-22{font-size:22px}
+.font-size-24{font-size:24px}
+.font-size-26{font-size:26px}
+.font-size-28{font-size:28px}
+.font-size-30{font-size:30px}
+.font-size-32{font-size:32px}
+.font-size-34{font-size:34px}
+.font-size-36{font-size:36px}
+.font-size-38{font-size:38px}
+.font-size-40{font-size:40px}
 .chord-c {background: url('../img/guitar-chord-chart.png') 890px -467px;width: 80px;height: 115px;}
+.chord-cm {background: url('../img/guitar-chord-chart.png') 811px -467px;width: 80px;height: 115px;}
+.chord-c7 {background: url('../img/guitar-chord-chart.png') 651px -467px;width: 80px;height: 115px;}
 .chord-d {background: url('../img/guitar-chord-chart.png') 890px -700px;width: 80px;height: 115px;}
 .chord-dm {background: url('../img/guitar-chord-chart.png') 811px -700px;width: 80px;height: 115px;}
 .chord-e {background: url('../img/guitar-chord-chart.png') 890px -931px;width: 80px;height: 115px;}
@@ -3069,3 +3068,5 @@ a.bg-light:focus,a.bg-light:hover{color:#545a5f}
 .chord-g {background: url('../img/guitar-chord-chart.png') 890px -1279px;width: 80px;height: 115px;}
 .chord-a {background: url('../img/guitar-chord-chart.png') 890px -1519px;width: 80px;height: 115px;}
 .chord-am {background: url('../img/guitar-chord-chart.png') 811px -1519px;width: 80px;height: 115px;}
+.chord-b {background: url('../img/guitar-chord-chart.png') 890px -1751px;width: 80px;height: 115px;}
+.chord-bm {background: url('../img/guitar-chord-chart.png') 811px -1751px;width: 80px;height: 115px;}
