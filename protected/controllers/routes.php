@@ -31,7 +31,7 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 
     $exts = json_decode( $settings['params']['extensions'], true );
     $mpost = null;
-    if (in_array( 'blog', $exts )) {
+    if (in_array( 'chord', $exts )) {
         $mpost = new \ExtensionsModel\PostModel();
     }
 

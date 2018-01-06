@@ -57,10 +57,12 @@ class PostModel extends \Model\BaseModel
     
     public function getPosts($data)
     {
-        $sql = "SELECT t.status, c.post_id, c.title, c.meta_description, c.content, c.slug, l.id, l.language_name, t.created_at     
+        $sql = "SELECT t.status, c.post_id, c.title, c.meta_description, c.content, c.slug, l.id, l.language_name, t.created_at, 
+        s.slug AS song_slug, s.artist, s.album, s.genre, s.youtube  
         FROM {tablePrefix}ext_post t 
         LEFT JOIN {tablePrefix}ext_post_content c ON c.post_id = t.id 
-        LEFT JOIN {tablePrefix}ext_post_language l ON l.id = c.language";
+        LEFT JOIN {tablePrefix}ext_post_language l ON l.id = c.language 
+        LEFT JOIN {tablePrefix}ext_post_songs s ON s.id = t.song_id";
 
         if (isset($data['category_id'])) {
             $sql .= " LEFT JOIN {tablePrefix}ext_post_in_category ct ON ct.post_id = t.id";
@@ -306,5 +308,36 @@ class PostModel extends \Model\BaseModel
 
         $row = \Model\R::getRow( $sql, $params );
         return $row;
+    }
+
+    public function getSearchResult($data)
+    {
+        $sql = "SELECT p.id, p.status, p.chords, t.title, t.content, t.slug, p.created_at, p.updated_at, 
+        s.slug AS song_slug, s.artist, s.album, s.genre 
+        FROM {tablePrefix}ext_post_content t 
+        LEFT JOIN {tablePrefix}ext_post p ON p.id = t.post_id 
+        LEFT JOIN {tablePrefix}ext_post_songs s ON s.id = p.song_id  
+        WHERE LOWER(t.title) LIKE :q";
+
+        $params = [ 'q' => '%'.$data['q'].'%' ];
+
+        $sql = str_replace(['{tablePrefix}'], [$this->_tbl_prefix], $sql);
+
+        $rows = \Model\R::getAll( $sql, $params );
+
+        $sql2 = "SELECT p.id, p.status, p.chords, t.title, t.content, t.slug, p.created_at, p.updated_at, 
+        s.slug AS song_slug, s.artist, s.album, s.genre   
+        FROM {tablePrefix}ext_post_content t 
+        LEFT JOIN {tablePrefix}ext_post p ON p.id = t.post_id 
+        LEFT JOIN {tablePrefix}ext_post_songs s ON s.id = p.song_id   
+        WHERE LOWER(s.artist) LIKE :q OR LOWER(s.album) LIKE :q";
+
+        $sql2 = str_replace(['{tablePrefix}'], [$this->_tbl_prefix], $sql2);
+
+        $rows2 = \Model\R::getAll( $sql2, $params );
+
+        $rows = $rows + $rows2;
+
+        return $rows;
     }
 }

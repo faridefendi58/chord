@@ -40,7 +40,7 @@ Daftar Postingan chord - {{ App.name }}
                                     <tr>
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ post.title }}</td>
-                                        <td><a href="{{ 'chord' | link }}/{{ post.slug }}" target="_newtab" data-toggle="tooltip" title="Klik untuk melihat hasil postingan">{{ 'chord' | link }}/{{ post.slug }}</a></td>
+                                        <td><a href="{{ 'chord' | link }}/{{ post.song_slug }}/{{ post.slug }}" target="_newtab" data-toggle="tooltip" title="Klik untuk melihat hasil postingan">{{ 'chord' | link }}/{{ post.song_slug }}/{{ post.slug }}</a></td>
                                         <td><center>{{ post.status }}</center></td>
                                         <td>
                                             <a href="{{ 'chords/posts/update' | link }}/{{ post.post_id }}" data-toggle="tooltip" title="Klik untuk mengubah data postingan!">
