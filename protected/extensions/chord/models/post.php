@@ -55,7 +55,7 @@ class PostModel extends \Model\BaseModel
         return $str;
     }
     
-    public function getPosts($data)
+    public function getPosts($data = array())
     {
         $sql = "SELECT t.status, c.post_id, c.title, c.meta_description, c.content, c.slug, l.id, l.language_name, t.created_at, 
         s.slug AS song_slug, s.artist, s.album, s.genre, s.youtube  
