@@ -82,13 +82,13 @@ $app->post('/kontak-kami', function ($request, $response, $args) {
             $mail->Port = $settings['params']['smtp_port'];
 
             //Recipients
-            $mail->setFrom( $settings['params']['admin_email'], 'Admin slightSite' );
+            $mail->setFrom( $settings['params']['admin_email'], 'Admin kuncilagu.net' );
             $mail->addAddress( $settings['params']['admin_email'], 'Farid Efendi' );
             $mail->addReplyTo( $_POST['Contact']['email'], $_POST['Contact']['name'] );
 
             //Content
             $mail->isHTML(true);
-            $mail->Subject = '[slightSite] Kontak Kami';
+            $mail->Subject = '[kunciLagu] Kontak Kami';
             $mail->Body = "Halo Admin, 
 	        <br/><br/>
             Ada pesan baru dari pengunjung dengan data berikut:
@@ -106,7 +106,7 @@ $app->post('/kontak-kami', function ($request, $response, $args) {
             exit;
         }
 
-        $message = 'Pesan Anda berhasil dikirim. Kami akan segera merespon pesan Anda.';
+        $message = 'Pesan Anda berhasil dikirim. Kami akan segera merespon pesan kamu.';
     }
 
     echo $message; exit;
@@ -162,4 +162,50 @@ $app->post('/tracking', function ($request, $response, $args) {
 
         exit;
     }
+});
+
+$app->post('/request-chord', function ($request, $response, $args) {
+    $message = 'Pesan Anda gagal dikirimkan.';
+    $settings = $this->get('settings');
+    if (isset($_POST['Request'])){
+        //send mail to admin
+        $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;
+            $mail->isSMTP();
+            $mail->Host = $settings['params']['smtp_host'];
+            $mail->SMTPAuth = true;
+            $mail->Username = $settings['params']['admin_email'];
+            $mail->Password = $settings['params']['smtp_secret'];
+            $mail->SMTPSecure = $settings['params']['smtp_secure'];
+            $mail->Port = $settings['params']['smtp_port'];
+
+            //Recipients
+            $mail->setFrom( $settings['params']['admin_email'], 'Admin kuncilagu.net' );
+            $mail->addAddress( $settings['params']['admin_email'], 'Farid Efendi' );
+            $mail->addReplyTo( $_POST['Request']['email'], $_POST['Request']['name'] );
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = '[kunciLagu] Request Chord';
+            $mail->Body = "Halo Admin, 
+	        <br/><br/>
+            Ada request lagu baru dari pengunjung dengan data berikut:
+            <br/><br/>
+            <b>Judul lagu</b> : ".$_POST['Request']['song']." <br/>
+            <b>Nama pengunjung</b> : ".$_POST['Request']['name']." <br/> 
+            <b>Alamat Email</b> : ".$_POST['Request']['email'];
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            exit;
+        }
+
+        $message = 'Request Anda berhasil dikirim. Kami akan segera memberikan informasi ke email kamu.';
+    }
+
+    echo $message; exit;
 });
